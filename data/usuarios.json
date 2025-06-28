@@ -1,0 +1,12 @@
+{
+    "usuarios": [
+        {
+            "nombre": "Administrador Principal",
+            "usuario": "admin",
+            "contrasena": "Teclado123*",
+            "rol": "ADMINISTRADOR",
+            "terminal_id": "DESKTOP-I4R8RUV",
+            "fecha_activacion": "2025-06-01"
+        }
+    ]
+}
