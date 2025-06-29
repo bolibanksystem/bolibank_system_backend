@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 import json
+import os
 
 router = APIRouter()
 
@@ -10,8 +11,10 @@ class LoginData(BaseModel):
 
 @router.post("/login")
 def login(data: LoginData):
+    path = os.path.join("app", "data", "usuarios.json"
+                        
     try:
-        with open("app/data/usuarios.json", "r", encoding="utf-8") as archivo:
+        with open(path, "r", encoding="utf-8") as archivo:
             datos = json.load(archivo)
     except FileNotFoundError:
         raise HTTPException(status_code=500, detail="Archivo de usuarios no encontrado")
