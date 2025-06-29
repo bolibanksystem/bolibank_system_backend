@@ -4,7 +4,6 @@ import json
 
 router = APIRouter()
 
-# Modelo que valida los datos de entrada
 class LoginData(BaseModel):
     usuario: str
     contrasena: str
