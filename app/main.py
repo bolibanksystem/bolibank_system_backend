@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from routers import login  # Esto importa bien el archivo login.py
+from app.routers import login  # Esto importa bien el archivo login.py
 
 app = FastAPI()
 
