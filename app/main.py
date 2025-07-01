@@ -1,21 +1,19 @@
 from fastapi import FastAPI
-from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from app.routers import login  # Esto importa bien el archivo login.py
+from fastapi.responses import FileResponse
+from routers import login  # importa login.py
 
 app = FastAPI()
 
-# Middleware para CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # o restringe a tu dominio
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Archivos estáticos
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 @app.api_route("/", methods=["GET", "HEAD"])
