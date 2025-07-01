@@ -18,7 +18,7 @@ app.add_middleware(
 # Archivos estáticos
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 def root():
     return {"mensaje": "BoliBank System API está funcionando correctamente."}
 
