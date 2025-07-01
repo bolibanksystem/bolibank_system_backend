@@ -5,14 +5,20 @@ import os
 
 router = APIRouter()
 
+# Modelo para los datos de entrada (login)
 class LoginData(BaseModel):
     usuario: str
     contrasena: str
 
-@router.post("/login")  # El método POST aquí es clave para que aparezca en Swagger
+# Modelo para la respuesta del login
+class LoginResponse(BaseModel):
+    mensaje: str
+    rol: str
+    terminal: str
+
+@router.post("/login", response_model=LoginResponse)
 def login(data: LoginData):
     path = os.path.join("data", "usuarios.json")
-
     try:
         with open(path, "r", encoding="utf-8") as archivo:
             datos = json.load(archivo)
@@ -21,10 +27,9 @@ def login(data: LoginData):
 
     for user in datos.get("usuarios", []):
         if user["usuario"].lower() == data.usuario.lower() and user["contrasena"] == data.contrasena:
-            return {
-                "mensaje": f"Bienvenida/o {user['nombre']}",
-                "rol": user["rol"],
-                "terminal": user["terminal_id"]
-            }
-
+            return LoginResponse(
+                mensaje=f"Bienvenida/o {user['nombre']}",
+                rol=user["rol"],
+                terminal=user["terminal_id"]
+            )
     raise HTTPException(status_code=401, detail="Usuario o contraseña incorrectos")
