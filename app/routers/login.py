@@ -11,7 +11,7 @@ class LoginData(BaseModel):
 
 @router.post("/login")  # El método POST aquí es clave para que aparezca en Swagger
 def login(data: LoginData):
-    path = os.path.join("app", "data", "usuarios.json")
+    path = os.path.join("data", "usuarios.json")
 
     try:
         with open(path, "r", encoding="utf-8") as archivo:
